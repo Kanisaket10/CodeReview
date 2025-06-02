@@ -21,7 +21,8 @@ function App() {
   }, [])
 
 
-  const BACKEND_URL = 'http://localhost:5000';
+//  const BACKEND_URL = 'http://localhost:5000';
+    const BACKEND_URL = 'https://codereview-1-9y0e.onrender.com'
 
   async function reviewCode(){
      const response = await axios.post(`${BACKEND_URL}/ai/get-review`, {code})
