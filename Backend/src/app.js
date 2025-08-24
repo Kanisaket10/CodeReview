@@ -1,20 +1,21 @@
 
 //const cors = require('cors')
-import express from 'express'
-import aiRoutes from "./routes/ai.route.js"
+import express from 'express';
 import cors from 'cors';
-
-const app = express()
-
-app.use(cors())
+import aiRoutes from "./routes/ai.route.js";
+import authRoutes from "./routes/auth.route.js";
 
 
-app.use(express.json())
+const app = express();
+
+app.use(cors());
+app.use(express.json());
 
 app.get('/', (req, res) => {
     res.send('Hello World')
-})
+});
 
-app.use('/ai', aiRoutes)
+app.use('/ai', aiRoutes);
+app.use('/auth', authRoutes);
 
 export default app;

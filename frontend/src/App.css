@@ -1,4 +1,4 @@
-*{
+/* *{
   margin: 0%;
   padding: 0%;
   box-sizing: border-box;
@@ -59,4 +59,200 @@ main .right {
   padding: 1rem 2rem;
   font-size: 1.5rem;
   overflow: auto;
+} */
+
+/* ======================== */
+/* === GLOBAL STYLING === */
+/* ======================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  width: 100%;
+}
+
+:root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ======================== */
+/* === NAVIGATION BAR === */
+/* ======================== */
+nav {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  background-color: #0c0c0c;
+  gap: 1.5rem;
+}
+
+nav a,
+nav button {
+  font-size: 1rem;
+  text-decoration: none;
+  color: #fff;
+  transition: color 0.25s;
+}
+
+nav a:hover,
+nav button:hover {
+  color: #646cff;
+}
+
+nav button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+/* ======================== */
+/* === MAIN LAYOUT (Reviewer) === */
+/* ======================== */
+main {
+  height: calc(100vh - 70px);
+  width: 100%;
+  padding: 1.5rem;
+  display: flex;
+  gap: 1rem;
+}
+
+main .left,
+main .right {
+  height: 100%;
+  flex-basis: 50%;
+  border-radius: 0.7rem;
+}
+
+main .left {
+  background-color: #000000;
+  position: relative;
+}
+
+.left .code,
+.code pre,
+.code pre code {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  border-radius: 0.7rem;
+  background-color: #0c0c0c;
+}
+
+main .left .review {
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+  background-color: rgb(219, 219, 255);
+  color: #000000;
+  padding: 0.5rem 2rem;
+  font-weight: 500;
+  cursor: pointer;
+  user-select: none;
+  border-radius: 0.7rem;
+}
+
+
+main .right {
+  background-color: #060018;
+  padding: 1rem 2rem;
+  font-size: 1rem;
+  overflow: auto;
+}
+
+/* ======================== */
+/* === AUTHENTICATION PAGES === */
+/* ======================== */
+.auth-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: calc(100vh - 70px);
+  width: 100%;
+}
+
+.auth-container h2 {
+  margin-bottom: 1.5rem;
+}
+
+.auth-container form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 2rem;
+  background-color: #1a1a1a;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.auth-container input {
+  padding: 0.8rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: #242424;
+  color: white;
+}
+
+.auth-container button {
+  background-color: #646cff;
+  color: white;
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+  padding: 0.8em 1.2em;
+  border-radius: 8px;
+  transition: background-color 0.25s;
+}
+
+.auth-container button:hover {
+  background-color: #535bf2;
+}
+
+/* ======================== */
+/* === HISTORY PAGE === */
+/* ======================== */
+.history-container {
+  padding: 2rem;
+  height: calc(100vh - 70px);
+  overflow-y: auto;
+}
+
+.review-card {
+  background-color: #1a1a1a;
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  border: 1px solid #333;
+}
+
+.review-card h3 {
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.code-block,
+.review-block {
+  background-color: #0c0c0c;
+  padding: 1rem;
+  border-radius: 5px;
+  overflow-x: auto;
 }
