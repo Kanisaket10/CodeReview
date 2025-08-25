@@ -20,6 +20,7 @@ import HistoryPage from './pages/HistoryPage.jsx';
 function Reviewer() {
     const [code, setCode] = useState(`//Write your code here`);
     const [review, setReview] = useState(``);
+    const [loading, setLoading] = useState(false);
     const { token } = useAuth();
 
     useEffect(() => {
@@ -27,13 +28,21 @@ function Reviewer() {
     }, []);
 
     const reviewCode = async () => {
+        setLoading(true); // Set loading to true when the request starts
         const config = {
             headers: {
                 Authorization: `Bearer ${token}`
             }
         };
-        const response = await axios.post(`${BACKEND_URL}/ai/get-review`, { code }, config);
-        setReview(response.data);
+        try {
+           const response = await axios.post(`${BACKEND_URL}/ai/get-review`, { code }, config);
+           setReview(response.data);
+        } catch (error) {
+           console.error("Error during code review:", error);
+           setReview("Error: Could not get a review.");
+        } finally {
+           setLoading(false); // Set loading to false when the request finishes
+        }   
     };
 
     return (
@@ -59,9 +68,13 @@ function Reviewer() {
             </div>
 
             <div className="right">
-                <Markdown rehypePlugins={[rehypeHighlight]}>
-                    {review}
-                </Markdown>
+                {loading ? (
+                    <div>Loading...</div>
+                ) : (
+                   <Markdown rehypePlugins={[rehypeHighlight]}>
+                       {review}
+                   </Markdown>
+                )}
             </div>
         </main>
     );
@@ -115,7 +128,7 @@ function App() {
                         <HistoryPage />
                     </PrivateRoute>
                 } />
-                {/*<Route path="*" element={<Navigate to="/app" />} />*/}
+                <Route path="*" element={<Navigate to="/app" />} />
             </Routes>
         </>
     );

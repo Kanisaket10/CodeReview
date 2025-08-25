@@ -10,6 +10,9 @@ router.post("/get-review", authMiddleware, aiController.getReview);
 // New route to get all reviews for the authenticated user
 router.get("/history", authMiddleware, aiController.getReviewHistory);
 
+// New route to get details of a specific review
+router.get("/history/:id", authMiddleware, aiController.getReviewDetails);
+
 
 //router.post("/get-review", aiController.getReview)
 

@@ -34,7 +34,7 @@ router.post('/login', async (req, res) => {
         const user = await User.findOne({ email });
 
         // Log to check if a user is found
-        console.log('User found:', user);
+        //console.log('User found:', user);
 
         if (!user) {
             return res.status(400).json({ message: 'Invalid credentials' });
@@ -43,13 +43,16 @@ router.post('/login', async (req, res) => {
         const isMatch = await bcrypt.compare(password, user.password);
 
         // Log the result of the password comparison
-        console.log('Password match result:', isMatch);
+        //console.log('Password match result:', isMatch);
 
         if (!isMatch) {
             return res.status(400).json({ message: 'Invalid credentials' });
         }
         
         // ... rest of the code ...
+        const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
+        res.json({ token, message: 'Login successful' });
+
     } catch (error) {
         res.status(500).json({ message: 'Server error', error: error.message });
     }
