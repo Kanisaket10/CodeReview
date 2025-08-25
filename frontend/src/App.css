@@ -256,3 +256,24 @@ main .right {
   border-radius: 5px;
   overflow-x: auto;
 }
+
+/* In frontend/src/App.css */
+/* ... existing CSS ... */
+
+.review-options {
+  position: absolute;
+  bottom: 1rem;
+  left: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: white;
+}
+
+.review-options select {
+  padding: 0.5rem;
+  border-radius: 5px;
+  background-color: #1a1a1a;
+  color: white;
+  border: 1px solid #333;
+}

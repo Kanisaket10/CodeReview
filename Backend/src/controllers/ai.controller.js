@@ -2,10 +2,10 @@ import aiService from "../services/ai.service.js";
 import Review from "../models/Review.js";
 
 const getReview = async (req, res) => {
-    const code = req.body.code;
+    const { code, reviewGoal } = req.body; // Extract reviewGoal
 
     if (!code) {
-        return res.status(400).send("Prompt is required");
+        return res.status(400).send("Code is required");
     }
 
     try {
@@ -19,7 +19,7 @@ const getReview = async (req, res) => {
         }
 
         // If the code is new or no previous review exists, generate a new one
-        const aiResponse = await aiService(code);
+        const aiResponse = await aiService(code, reviewGoal); // Pass reviewGoal to the service
         
         // Generate a title from the first line of code
         const title = code.split('\n')[0].substring(0, 50) + '...';

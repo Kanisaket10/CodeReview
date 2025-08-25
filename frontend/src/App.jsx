@@ -17,10 +17,76 @@ import HistoryPage from './pages/HistoryPage.jsx';
  const BACKEND_URL = 'http://localhost:5000';
 
 
+// function Reviewer() {
+//     const [code, setCode] = useState(`//Write your code here`);
+//     const [review, setReview] = useState(``);
+//     const [loading, setLoading] = useState(false);
+//      const [reviewGoal, setReviewGoal] = useState('general');
+//     const { token } = useAuth();
+
+//     useEffect(() => {
+//         prism.highlightAll();
+//     }, []);
+
+//     const reviewCode = async () => {
+//         setLoading(true); // Set loading to true when the request starts
+//         const config = {
+//             headers: {
+//                 Authorization: `Bearer ${token}`
+//             }
+//         };
+//         try {
+//            const response = await axios.post(`${BACKEND_URL}/ai/get-review`, { code }, config);
+//            setReview(response.data);
+//         } catch (error) {
+//            console.error("Error during code review:", error);
+//            setReview("Error: Could not get a review.");
+//         } finally {
+//            setLoading(false); // Set loading to false when the request finishes
+//         }   
+//     };
+
+//     return (
+//         <main>
+//             <div className="left">
+//                 <div className="code">
+//                     <Editor
+//                         value={code}
+//                         onValueChange={code => setCode(code)}
+//                         highlight={code => prism.highlight(code, prism.languages.javascript, "javascript")}
+//                         padding={10}
+//                         style={{
+//                             fontFamily: '"Fira code", "Fira Mono", monospace',
+//                             fontSize: 16,
+//                             border: "1px solid #ddd",
+//                             borderRadius: "5px",
+//                             height: "100%",
+//                             width: "100%"
+//                         }}
+//                     />
+//                 </div>
+//                 <div onClick={reviewCode} className="review">Review</div>
+//             </div>
+
+//             <div className="right">
+//                 {loading ? (
+//                     <div>Loading...</div>
+//                 ) : (
+//                    <Markdown rehypePlugins={[rehypeHighlight]}>
+//                        {review}
+//                    </Markdown>
+//                 )}
+//             </div>
+//         </main>
+//     );
+// }
+
 function Reviewer() {
     const [code, setCode] = useState(`//Write your code here`);
     const [review, setReview] = useState(``);
     const [loading, setLoading] = useState(false);
+    // Add new state for review goal
+    const [reviewGoal, setReviewGoal] = useState('general'); 
     const { token } = useAuth();
 
     useEffect(() => {
@@ -28,20 +94,21 @@ function Reviewer() {
     }, []);
 
     const reviewCode = async () => {
-        setLoading(true); // Set loading to true when the request starts
+        setLoading(true);
         const config = {
             headers: {
                 Authorization: `Bearer ${token}`
             }
         };
         try {
-           const response = await axios.post(`${BACKEND_URL}/ai/get-review`, { code }, config);
+           // Pass the reviewGoal in the request body
+           const response = await axios.post(`${BACKEND_URL}/ai/get-review`, { code, reviewGoal }, config);
            setReview(response.data);
         } catch (error) {
            console.error("Error during code review:", error);
            setReview("Error: Could not get a review.");
         } finally {
-           setLoading(false); // Set loading to false when the request finishes
+           setLoading(false);
         }   
     };
 
@@ -63,6 +130,16 @@ function Reviewer() {
                             width: "100%"
                         }}
                     />
+                </div>
+                {/* Add a review options panel */}
+                <div className="review-options">
+                    <label>Review Focus:</label>
+                    <select value={reviewGoal} onChange={(e) => setReviewGoal(e.target.value)}>
+                        <option value="general">General Review</option>
+                        <option value="security">Security & Vulnerabilities</option>
+                        <option value="performance">Performance & Efficiency</option>
+                        <option value="quality">Code Quality & Best Practices</option>
+                    </select>
                 </div>
                 <div onClick={reviewCode} className="review">Review</div>
             </div>
