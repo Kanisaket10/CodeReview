@@ -1,69 +1,5 @@
-/* *{
-  margin: 0%;
-  padding: 0%;
-  box-sizing: border-box;
-}
-
-html, 
-body,
-#root{
-    height: 100%;
-    width: 100%;
-}
-
-main{
-  height: 100%;
-  width: 100%;
-  padding: 1.5rem;
-  display: flex;
-  gap: 1rem;
-}
-
-main .left, main .right{
-   height: 100%;
-   flex-basis: 50%;
-   border-radius: 0.7rem;
-}
-
-main .left {
-  background-color: #000000;
-  position: relative;
-}
-
-.left .code,
-.code pre,
-.code pre code {
-  height: 100%;
-  width: 100%;
-  margin: 0;
-  border-radius: 0.7rem;
-  background-color: #0c0c0c;
-}
-
-main .left .review {
-  position: absolute;
-  bottom: 1rem;
-  right: 1rem;
-  background-color: rgb(219, 219, 255);
-  color: #000000;
-  padding: 0.5rem 2rem;
-  font-weight: 500;
-  cursor: pointer;
-  user-select: none;
-  border-radius: 0.7rem;
-}
-
-
-main .right {
-  background-color: #060018;
-  padding: 1rem 2rem;
-  font-size: 1.5rem;
-  overflow: auto;
-} */
-
-/* ======================== */
 /* === GLOBAL STYLING === */
-/* ======================== */
+
 * {
   margin: 0;
   padding: 0;
@@ -145,7 +81,9 @@ main .right {
 main .left {
   background-color: #000000;
   position: relative;
+  overflow-y: auto;
 }
+
 
 .left .code,
 .code pre,
@@ -155,6 +93,7 @@ main .left {
   margin: 0;
   border-radius: 0.7rem;
   background-color: #0c0c0c;
+  
 }
 
 main .left .review {
@@ -257,8 +196,7 @@ main .right {
   overflow-x: auto;
 }
 
-/* In frontend/src/App.css */
-/* ... existing CSS ... */
+/* Review focus*/
 
 .review-options {
   position: absolute;
@@ -276,4 +214,38 @@ main .right {
   background-color: #1a1a1a;
   color: white;
   border: 1px solid #333;
+}
+
+/* code block in Right side */
+
+.improved-code-container {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid #333;
+}
+
+.improved-code-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.improved-code-header h4 {
+  margin: 0;
+}
+
+.copy-button {
+  background-color: #646cff;
+  color: white;
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+  padding: 0.5em 1em;
+  border-radius: 8px;
+  transition: background-color 0.25s;
+}
+
+.copy-button:hover {
+  background-color: #535bf2;
 }

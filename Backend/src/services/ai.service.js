@@ -83,7 +83,12 @@ async function generateContent(prompt, reviewGoal = 'general') { // Accept revie
             • ✔ Returns null instead of breaking execution.
 
             Final Note:
-            ${instruction}
+                ${instruction}
+
+                Please provide the improved or corrected code in a separate Markdown code block. The code block should be the final part of your response. For example:
+                \`\`\`javascript
+                // Your corrected code here
+                \`\`\`
         `
     });
 

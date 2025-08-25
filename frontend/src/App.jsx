@@ -87,6 +87,7 @@ function Reviewer() {
     const [loading, setLoading] = useState(false);
     // Add new state for review goal
     const [reviewGoal, setReviewGoal] = useState('general'); 
+    const [isCopied, setIsCopied] = useState(false); // New state for copy button
     const { token } = useAuth();
 
     useEffect(() => {
@@ -112,6 +113,23 @@ function Reviewer() {
         }   
     };
 
+      // Function to handle the copy action
+    const handleCopy = (text) => {
+        navigator.clipboard.writeText(text);
+        setIsCopied(true);
+        setTimeout(() => setIsCopied(false), 2000); // Reset state after 2 seconds
+    };
+
+      // Function to parse the AI response and extract the first code block
+    const extractCodeBlock = (markdown) => {
+        const match = markdown.match(/```[a-z]*\n([\s\S]*?)```/);
+        return match ? match[1] : null;
+    };
+    
+    const improvedCode = extractCodeBlock(review);
+    const markdownWithoutCode = improvedCode ? review.replace(extractCodeBlock(review), '').replace(/```[a-z]*\n```/, '') : review;
+
+
     return (
         <main>
             <div className="left">
@@ -131,6 +149,7 @@ function Reviewer() {
                         }}
                     />
                 </div>
+
                 {/* Add a review options panel */}
                 <div className="review-options">
                     <label>Review Focus:</label>
@@ -148,9 +167,29 @@ function Reviewer() {
                 {loading ? (
                     <div>Loading...</div>
                 ) : (
-                   <Markdown rehypePlugins={[rehypeHighlight]}>
-                       {review}
-                   </Markdown>
+                   <>
+                       <Markdown rehypePlugins={[rehypeHighlight]}>
+                           {markdownWithoutCode}
+                       </Markdown>
+
+                       {/* Conditionally render the improved code block with a copy button */}
+                       {improvedCode && (
+                           <div className="improved-code-container">
+                               <div className="improved-code-header">
+                                   <h4>Improved Code</h4>
+                                   <button 
+                                       onClick={() => handleCopy(improvedCode)} 
+                                       className="copy-button"
+                                   >
+                                       {isCopied ? 'Copied!' : 'Copy'}
+                                   </button>
+                               </div>
+                               <div className="code-block">
+                                   <Markdown rehypePlugins={[rehypeHighlight]}>{`\`\`\`javascript\n${improvedCode}\n\`\`\``}</Markdown>
+                               </div>
+                           </div>
+                       )}
+                   </>
                 )}
             </div>
         </main>
