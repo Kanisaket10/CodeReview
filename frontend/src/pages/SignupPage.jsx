@@ -2,8 +2,8 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
-//const BACKEND_URL = 'https://codereview-1-9y0e.onrender.com';
-const BACKEND_URL = 'http://localhost:5000';
+const BACKEND_URL = 'https://codereview-0.onrender.com';
+//const BACKEND_URL = 'http://localhost:5000';
 
 function SignupPage() {
     const [email, setEmail] = useState('');

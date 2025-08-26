@@ -13,8 +13,8 @@ import LoginPage from './pages/LoginPage.jsx';
 import SignupPage from './pages/SignupPage.jsx';
 import HistoryPage from './pages/HistoryPage.jsx';
 
-//const BACKEND_URL = 'https://codereview-1-9y0e.onrender.com';
- const BACKEND_URL = 'http://localhost:5000';
+const BACKEND_URL = 'https://codereview-0.onrender.com';
+// const BACKEND_URL = 'http://localhost:5000';
 
 
 // function Reviewer() {

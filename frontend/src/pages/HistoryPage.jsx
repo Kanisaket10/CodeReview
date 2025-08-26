@@ -4,8 +4,8 @@ import { useAuth } from '../context/authContext';
 import Markdown from "react-markdown";
 import rehypeHighlight from "rehype-highlight";
 
-//const BACKEND_URL = 'https://codereview-1-9y0e.onrender.com';
-const BACKEND_URL = 'http://localhost:5000';
+const BACKEND_URL = 'https://codereview-0.onrender.com';
+//const BACKEND_URL = 'http://localhost:5000';
 
 function HistoryPage() {
     const [reviews, setReviews] = useState([]);
