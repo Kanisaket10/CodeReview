@@ -81,9 +81,13 @@ main .right {
 main .left {
   background-color: #000000;
   position: relative;
-  overflow-y: auto;
 }
 
+.left .code {
+  height: calc(100% - 100px);
+  
+  /* overflow-y: auto; */
+}
 
 .left .code,
 .code pre,
@@ -173,6 +177,8 @@ main .right {
   padding: 2rem;
   height: calc(100vh - 70px);
   overflow-y: auto;
+  cursor: pointer;
+  
 }
 
 .review-card {
@@ -181,6 +187,7 @@ main .right {
   padding: 1.5rem;
   margin-bottom: 2rem;
   border: 1px solid #333;
+  
 }
 
 .review-card h3 {
@@ -194,13 +201,14 @@ main .right {
   padding: 1rem;
   border-radius: 5px;
   overflow-x: auto;
+  
 }
 
 /* Review focus*/
 
 .review-options {
   position: absolute;
-  bottom: 1rem;
+  bottom: 0.5rem;
   left: 1rem;
   display: flex;
   align-items: center;
